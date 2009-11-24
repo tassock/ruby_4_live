@@ -1,6 +1,6 @@
 # Ruby 4 Live #
 
-A Ruby implementation of the [Ableton Live](http://ableton.com/) API. The current implementation connects to an included [Max For Live](http://ableton.com/maxforlive) patch via OSC to interact with the API. 
+A Ruby implementation of the [Ableton Live](http://ableton.com/) API. The current version connects to an included [Max For Live](http://ableton.com/maxforlive) patch via OSC to interact with the API. 
 
   
 ## Author ##
