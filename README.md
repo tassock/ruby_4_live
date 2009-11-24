@@ -13,6 +13,11 @@ Peter Marks (petertmarks [at] gmail [dot] com)
 This is a young project (first commit 11/24/2009) and the API is subject to change. Only Track, Clip and ClipSlot Live objects have been implemented
 
 
+## Dependancies ##
+
++ [OpenSound Control for Ruby](http://github.com/fugalh/rosc)
+
+
 ## Usage ##
 
 	require 'live_api'
