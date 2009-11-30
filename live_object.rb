@@ -2,6 +2,12 @@ class LiveObject
   
   attr_accessor :id
   
+  def initialize(options)
+    options.each do |name, value|
+      self.send(name.to_s + '=', value)
+    end
+  end
+  
   def self.find(id)
     @@objects.select{|t| t.id == id}[0]
   end

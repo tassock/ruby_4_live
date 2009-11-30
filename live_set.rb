@@ -13,7 +13,7 @@ class LiveSet
   def get_tracks
     track_count.times do |i|
       track_id = @@connection.live_path("goto live_set tracks #{i}")[0][1][1]
-      LiveSet.add_object(Track.new(track_id, i))
+      LiveSet.add_object(Track.new({:id => track_id, :order => i}))
     end
   end
   

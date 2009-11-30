@@ -30,6 +30,5 @@ This is a young project (first commit 11/24/2009) and the API is subject to chan
 ## My To-Do List ##
 
 + Implement functionality for Device and other objects.
-+ Make OSC server listens more flexible and less prone to timeouts
 + Test suite
 + Make gem version
