@@ -1,5 +1,15 @@
 class LiveSet
   
+  # Scan Live set for tracks, devices, clip slots and clips
+  def initialize
+    get_tracks
+    tracks.each do |t|
+      t.get_clip_slots
+      t.get_devices
+    end
+    puts "Scanned Live set: #{Track.all.length} tracks, #{Device.all.length} devices, #{ClipSlot.all.length} clip slots, #{Clip.all.length} clips"
+  end
+  
   def tracks
     @@objects.select { |o| o.kind_of? Track }
   end

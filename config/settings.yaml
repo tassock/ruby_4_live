@@ -1,0 +1,13 @@
+clip: 
+  default_properties: 
+    - name 
+    - pitch_coarse
+clipslot: 
+  default_properties: 
+    - has_clip
+track: 
+  default_properties: 
+    - name
+device:
+  default_properties: 
+    - name

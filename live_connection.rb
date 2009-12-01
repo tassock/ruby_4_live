@@ -19,7 +19,6 @@ class LiveConnection
     response = []
     @server.add_method '/slot1', 'si' do |msg|
       response << [msg.address, msg.args]
-      # puts response.inspect
     end
     # @server.add_method '/slot2', 'si' do |msg|
     #   response << [msg.address, msg.args]
@@ -33,7 +32,6 @@ class LiveConnection
     while response.empty?
       sleep 0.001
     end
-    # puts response.inspect
     response
   end
   
@@ -59,23 +57,12 @@ class LiveConnection
     while response.empty?
       sleep 0.001
     end
-    # puts response.inspect
     response
   end
   
   def live_call(arg)
     m = OSC::Message.new('/live_object', 's', "call #{arg}")
     @connection.send m, 0, @host, @send_port
-  end
-  
-  def live_transport
-    @server.add_method '/transport', 'iiii' do |msg|
-      LiveScheduler.beat_value(msg.args[3], msg.args[2], msg.args[1], msg.args[0])
-      # puts "#{msg.args[0]}, #{msg.args[1]}, #{msg.args[2]}, #{msg.args[3]}"
-    end
-    Thread.new do
-      @server.serve
-    end
   end
 
 end

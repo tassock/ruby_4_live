@@ -1,0 +1,83 @@
+clip: 
+  properties:
+    - color
+    - is_audio_clip
+    - is_midi_clip
+    - is_playing
+    - is_recording
+    - is_triggered
+    - length
+    - loop_end
+    - loop_start
+    - looping
+    - muted
+    - name
+    - pitch_coarse
+    - pitch_fine
+    - playing_position
+    - signature_denominator
+    - signature_numerator
+    - warping
+    - will_record_on_start
+  functions:
+    - deselect_all_notes
+    - fire
+    - get_selected_notes
+    - move_playing_pos
+    - replace_selected_notes
+    - select_all_notes
+    - stop
+clip_slot: 
+  properties:
+    - controls_other_clips
+    - has_clip
+    - has_stop_button
+    - is_playing
+    - is_recording
+    - is_triggered
+    - playing_status
+    - will_record_on_start
+  functions:
+    - fire
+    - set_fire_button_state
+    - stop
+track: 
+  properties:
+    - arm
+    - can_be_armed
+    - current_iput_timing
+    - current_input_sub_routing
+    - current_monitoring_state
+    - current_output_routing
+    - current_output_sub_routing
+    - fired_slot_index
+    - has_audio_input
+    - has_audio_output
+    - has_midi_input
+    - has_midi_output
+    - input_meter_left
+    - input_meter_level
+    - input_meter_right
+    - input_routings
+    - input_sub_routings
+    - is_foldable
+    - is_part_of_selection
+    - is_visible
+    - mute
+    - name
+    - output_meter_left
+    - output_meter_level
+    - output_meter_right
+    - output_routings
+    - output_sub_routings
+    - playing_slot_index
+    - solo 
+  functions:
+    - jump_in_running_session_clip
+    - stop_all_clips
+device:
+  properties:
+    - class_name
+    - name 
+  functions:
+    - store_chosen_bank
