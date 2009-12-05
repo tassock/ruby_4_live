@@ -10,7 +10,7 @@ Peter Marks (petertmarks [at] gmail [dot] com)
 
 ## Status ##
 
-This is a young project (first commit 11/24/2009) and the API is subject to change. Only Track, Clip and ClipSlot Live objects have been implemented
+This is a young project (first commit 11/24/2009) and the API is subject to change. 
 
 
 ## Dependancies ##
@@ -20,7 +20,7 @@ This is a young project (first commit 11/24/2009) and the API is subject to chan
 
 ## Usage ##
 
-Creating a new LiveSet scans the live set for the ID's of every Track, Device, ClipSlot and Clip 'LiveObject':
+Creating a new LiveSet scans the live set for the ID's of every Track, Device, DeviceParameter, ClipSlot and Clip 'LiveObject':
 
 	>  require 'live_api'
 	=> true

@@ -6,8 +6,11 @@ class LiveSet
     tracks.each do |t|
       t.get_clip_slots
       t.get_devices
+      t.devices.each do |d|
+        d.get_parameters
+      end
     end
-    puts "Scanned Live set: #{Track.all.length} tracks, #{Device.all.length} devices, #{ClipSlot.all.length} clip slots, #{Clip.all.length} clips"
+    puts "Scanned Live set: #{Track.all.length} tracks, #{Device.all.length} devices, #{DeviceParameter.all.length} parameters, #{ClipSlot.all.length} clip slots, #{Clip.all.length} clips"
   end
   
   def tracks

@@ -21,9 +21,13 @@ class Track < LiveObject
     @@objects.select { |o| o.kind_of? ClipSlot and o.track_id == id}#.sort_by {|c| c['order'] }
   end
   
+  def devices
+    @@objects.select { |o| o.kind_of? Device and o.track_id == id}
+  end
+  
   def clip_slot_count
     set_path
-    @@connection.live_object("get clip_slots")[0][1][2]
+    @@connection.live_object("getcount clip_slots")[0][1][2]
   end
   
   def get_clip_slots

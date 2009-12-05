@@ -8,6 +8,7 @@ require 'live_connection'
 require 'live_object'
 require 'objects/track'
 require 'objects/device'
+require 'objects/device_parameter'
 require 'objects/clip_slot'
 require 'objects/clip'
 

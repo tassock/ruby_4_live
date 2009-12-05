@@ -11,3 +11,6 @@ track:
 device:
   default_properties: 
     - name
+deviceparameter:
+  default_properties: 
+    - name

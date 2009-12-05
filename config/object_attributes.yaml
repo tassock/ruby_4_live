@@ -27,7 +27,7 @@ clip:
     - replace_selected_notes
     - select_all_notes
     - stop
-clip_slot: 
+clipslot: 
   properties:
     - controls_other_clips
     - has_clip
@@ -81,3 +81,12 @@ device:
     - name 
   functions:
     - store_chosen_bank
+deviceparameter:
+  properties:
+    - is_enabled
+    - is_quantized
+    - max
+    - min
+    - name
+    - original_name
+    - value 

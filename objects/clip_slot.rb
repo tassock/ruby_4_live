@@ -2,11 +2,11 @@ class ClipSlot < LiveObject
   
   attr_accessor :track_id, :order
   
-  OBJECT_ATTRIBUTES['clip_slot']['properties'].each do |method|
+  OBJECT_ATTRIBUTES['clipslot']['properties'].each do |method|
     attr_accessor method
   end
   
-  OBJECT_ATTRIBUTES['clip_slot']['functions'].each do |method|
+  OBJECT_ATTRIBUTES['clipslot']['functions'].each do |method|
     define_method method do
       set_path
       @@connection.live_call(method)
