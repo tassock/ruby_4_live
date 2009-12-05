@@ -8,6 +8,10 @@ class LiveObject
       self.send(name.to_s + '=', value)
     end
     default_properties.map {|p| self.get(p) }
+    after_initialize
+  end
+  
+  def after_initialize
   end
   
   # get default properties from config/settings.rb

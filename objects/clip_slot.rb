@@ -21,15 +21,14 @@ class ClipSlot < LiveObject
     Track.find(track_id)
   end
   
-  # ToDo: This is not prepared to handle nil
   def clip
-    existing = @@objects.select { |o| o.kind_of? Clip and o.clip_slot_id == id}
-    if existing.empty? 
-      clip_id = @@connection.live_path("goto live_set tracks #{track.order} clip_slots #{order} clip")[0][1][1]
+    @@objects.select { |o| o.kind_of? Clip and o.clip_slot_id == id}[0]
+  end
+  
+  def get_clip
+    if has_clip == 1
+      clip_id = @@connection.live_path("goto live_set #{track.path} clip_slots #{order} clip")[0][1][1]
       LiveSet.add_object(Clip.new({:id => clip_id, :clip_slot_id => id}))
-      clip
-    else
-      existing[0]
     end
   end
   

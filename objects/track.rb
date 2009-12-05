@@ -1,6 +1,6 @@
 class Track < LiveObject
   
-  attr_accessor :order
+  attr_accessor :order, :is_master
   
   OBJECT_ATTRIBUTES['track']['properties'].each do |method|
     attr_accessor method
@@ -13,8 +13,21 @@ class Track < LiveObject
     end
   end
   
+  def after_initialize
+    get_clip_slots unless is_master
+    get_devices
+  end
+  
   def self.all
     @@objects.select { |o| o.kind_of? Track }
+  end
+  
+  def self.master
+    @@objects.select { |o| o.kind_of? Track and o.is_master == true}[0]
+  end
+  
+  def path
+    is_master ? "master_track" : "tracks #{order}"
   end
   
   def clip_slots
@@ -32,18 +45,15 @@ class Track < LiveObject
   
   def get_clip_slots
     10.times do |i|
-      clip_slot_id = @@connection.live_path("goto live_set tracks #{order} clip_slots #{i}")[0][1][1]
+      clip_slot_id = @@connection.live_path("goto live_set #{path} clip_slots #{i}")[0][1][1]
       clip_slot = ClipSlot.new({:id => clip_slot_id, :order => i, :track_id => id})
       LiveSet.add_object(clip_slot)
-      if clip_slot.has_clip == 1
-        clip_slot.clip
-      end
     end
   end
   
   def get_devices
     10.times do |i|
-      device_id = @@connection.live_path("goto live_set tracks #{order} devices #{i}")[0][1][1]
+      device_id = @@connection.live_path("goto live_set #{path} devices #{i}")[0][1][1]
       break if device_id == 0
       device = Device.new({:id => device_id, :order => i, :track_id => id})
       LiveSet.add_object(device)
