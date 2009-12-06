@@ -81,6 +81,9 @@ device:
     - name 
   functions:
     - store_chosen_bank
+mixerdevice:
+  properties: 
+  functions: 
 deviceparameter:
   properties:
     - is_enabled
@@ -90,3 +93,4 @@ deviceparameter:
     - name
     - original_name
     - value 
+  functions: 

@@ -11,6 +11,8 @@ track:
 device:
   default_properties: 
     - name
+mixerdevice:
+  default_properties: 
 deviceparameter:
   default_properties: 
     - name

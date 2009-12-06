@@ -4,10 +4,10 @@ class LiveObject
   
   def initialize(options)
     options.each do |name, value|
-      puts "ID CANNOT BE NIL OR ZERO" if (name.to_s == 'id' and (value == 0 or value.nil?))
+      puts "ID CANNOT BE NIL OR ZERO #{self.inspect}" if (name.to_s == 'id' and (value == 0 or value.nil?))
       self.send(name.to_s + '=', value)
     end
-    default_properties.map {|p| self.get(p) }
+    default_properties.map {|p| self.get(p) } unless default_properties.nil?
     after_initialize
   end
   

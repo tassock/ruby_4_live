@@ -28,7 +28,7 @@ class ClipSlot < LiveObject
   def get_clip
     if has_clip == 1
       clip_id = @@connection.live_path("goto live_set #{track.path} clip_slots #{order} clip")[0][1][1]
-      LiveSet.add_object(Clip.new({:id => clip_id, :clip_slot_id => id}))
+      LiveSet.add_object(Clip.new(:id => clip_id, :clip_slot_id => id))
     end
   end
   
