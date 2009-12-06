@@ -35,8 +35,13 @@ class LiveConnection
     response
   end
   
-  def set_live_object(arg)
+  def set_live_object_path(arg)
     m = OSC::Message.new('/set_live_object', 's', "#{arg}")
+    @connection.send m, 0, @host, @send_port
+  end
+  
+  def set_live_object(arg)
+    m = OSC::Message.new('/live_object', 's', "#{arg}")
     @connection.send m, 0, @host, @send_port
   end
   
@@ -48,6 +53,12 @@ class LiveConnection
     @server.add_method '/slot1', 'ss' do |msg|
       response << [msg.address, msg.args]
     end
+    @server.add_method '/slot1', 'si' do |msg|
+      response << [msg.address, msg.args]
+    end
+    # @server.add_method '/slot1', 'sf' do |msg|
+    #   response << [msg.address, msg.args]
+    # end
     @server.add_method '/slot1', 's*' do |msg|
       response << [msg.address, msg.args]
     end

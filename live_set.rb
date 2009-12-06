@@ -5,7 +5,6 @@ class LiveSet
     get_master_track
     get_tracks
     Device.all.map {|d| d.get_parameters }
-    # MixerDevice.all.map {|d| d.get_parameters }
     ClipSlot.all.map {|c| c.get_clip }
     puts "Scanned Live set: #{Track.all.length} tracks, #{Device.all.length} devices, #{DeviceParameter.all.length} parameters, #{ClipSlot.all.length} clip slots, #{Clip.all.length} clips"
   end

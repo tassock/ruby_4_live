@@ -28,7 +28,7 @@ class LiveObject
   end
   
   def set_path
-    @@connection.set_live_object("id #{id}")
+    @@connection.set_live_object_path("id #{id}")
   end
   
   def get(property)
@@ -39,7 +39,7 @@ class LiveObject
   
   def set(property, value)
     set_path
-    @@connection.live_object("set #{property} #{value}")
+     @@connection.set_live_object("set #{property} #{value}")
   end
   
 end
