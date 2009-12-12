@@ -16,3 +16,4 @@ require 'objects/clip'
 @@connection = LiveConnection.new('localhost', 7402, 7403)
 @@objects = []
 @@clip_plays = []
+LiveSet.new

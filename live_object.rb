@@ -28,18 +28,18 @@ class LiveObject
   end
   
   def set_path
-    @@connection.set_live_object_path("id #{id}")
+    @@connection.send_message("/set_live_object", "id #{id}")
   end
   
   def get(property)
     set_path
     sleep SLEEP_INTERVAL
-    self.send(property.to_s + '=', @@connection.live_object("get #{property}")[0][1][1])
+    self.send(property.to_s + '=', @@connection.send_message("/live_object", "get #{property}", true)[0][1][1])
   end
   
   def set(property, value)
     set_path
-     @@connection.set_live_object("set #{property} #{value}")
+    @@connection.send_message("/live_object", "set #{property} #{value}")
   end
   
 end

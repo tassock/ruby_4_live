@@ -44,6 +44,7 @@ LiveObject properties are as accessor methods:
 ## My To-Do List ##
 
 + Implement functionality for LiveSet, Scene and other objects.
++ Improved error handling for set scanning. 
 + Transport listeners
 + Test suite
 + Make gem version
