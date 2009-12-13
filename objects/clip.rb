@@ -9,12 +9,8 @@ class Clip < LiveObject
   OBJECT_ATTRIBUTES['clip']['functions'].each do |method|
     define_method method do
       set_path
-      @@connection.live_call(method)
+      connection.live_call(method)
     end
-  end
-  
-  def self.all
-    @@objects.select { |o| o.kind_of? Clip }
   end
   
 end

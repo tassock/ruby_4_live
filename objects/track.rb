@@ -9,7 +9,7 @@ class Track < LiveObject
   OBJECT_ATTRIBUTES['track']['functions'].each do |method|
     define_method method do
       set_path
-      @@connection.live_call(method)
+      connection.live_call(method)
     end
   end
   
@@ -19,16 +19,8 @@ class Track < LiveObject
     get_mixer_device
   end
   
-  def self.all
-    @@objects.select { |o| o.kind_of? Track }
-  end
-  
-  def self.master
-    @@objects.select { |o| o.kind_of? Track and o.is_master == true}[0]
-  end
-  
   def mixer_device
-    @@objects.select { |o| o.kind_of? Device and o.track_id == id and o.is_mixer == true}[0]
+    live_set.objects.select { |o| o.kind_of? Device and o.track_id == id and o.is_mixer == true}[0]
   end
   
   def path
@@ -36,45 +28,45 @@ class Track < LiveObject
   end
   
   def clip_slots
-    @@objects.select { |o| o.kind_of? ClipSlot and o.track_id == id}#.sort_by {|c| c['order'] }
+    live_set.objects.select { |o| o.kind_of? ClipSlot and o.track_id == id}#.sort_by {|c| c['order'] }
   end
   
   def devices
-    @@objects.select { |o| o.kind_of? Device and o.track_id == id}
+    live_set.objects.select { |o| o.kind_of? Device and o.track_id == id}
   end
   
   def mixer_device
-    @@objects.select { |o| o.kind_of? MixerDevice and o.track_id == id}[0]
+    live_set.objects.select { |o| o.kind_of? MixerDevice and o.track_id == id}[0]
   end
   
   def clip_slot_count
     set_path
-    @@connection.live_object("getcount clip_slots")[0][1][2]
+    connection.live_object("getcount clip_slots")[0][1][2]
   end
   
   private
   
   def get_clip_slots
     10.times do |i|
-      clip_slot_id = @@connection.live_path("goto live_set #{path} clip_slots #{i}")[0][1][1]
-      clip_slot = ClipSlot.new(:id => clip_slot_id, :order => i, :track_id => id)
-      LiveSet.add_object(clip_slot)
+      clip_slot_id = connection.live_path("goto live_set #{path} clip_slots #{i}")[0][1][1]
+      clip_slot = ClipSlot.new(:id => clip_slot_id, :order => i, :track_id => id, :live_set => live_set)
+      live_set.add_object(clip_slot)
     end
   end
   
   def get_devices
     10.times do |i|
-      device_id = @@connection.live_path("goto live_set #{path} devices #{i}")[0][1][1]
+      device_id = connection.live_path("goto live_set #{path} devices #{i}")[0][1][1]
       break if device_id == 0
-      device = Device.new(:id => device_id, :order => i, :track_id => id)
-      LiveSet.add_object(device)
+      device = Device.new(:id => device_id, :order => i, :track_id => id, :live_set => live_set)
+      live_set.add_object(device)
     end
   end
   
   def get_mixer_device
-    device_id = @@connection.live_path("goto live_set #{path} mixer_device")[0][1][1]
-    device = MixerDevice.new(:id => device_id, :track_id => id)
-    LiveSet.add_object(device)
+    device_id = connection.live_path("goto live_set #{path} mixer_device")[0][1][1]
+    device = MixerDevice.new(:id => device_id, :track_id => id, :live_set => live_set)
+    live_set.add_object(device)
   end
   
 end

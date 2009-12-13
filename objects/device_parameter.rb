@@ -7,10 +7,6 @@ class DeviceParameter < LiveObject
     attr_accessor method
   end
   
-  def self.all
-    @@objects.select { |o| o.kind_of? DeviceParameter }
-  end
-  
   def device
     Device.find(device_id)
   end

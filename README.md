@@ -10,7 +10,7 @@ Peter Marks (petertmarks [at] gmail [dot] com)
 
 ## Status ##
 
-This is a young project (first commit 11/24/2009) and the API is subject to change. 
+This is a young library (first commit 11/24/2009) and the API is subject to change. Currently, I'm modeling it after my own needs. If you are using it and have requests or questions, I am happy to listen and respond.
 
 
 ## Dependancies ##
@@ -20,24 +20,29 @@ This is a young project (first commit 11/24/2009) and the API is subject to chan
 
 ## Usage ##
 
-Creating a new LiveSet scans the live set for the ID's of every Track, Device, DeviceParameter, ClipSlot and Clip 'LiveObject':
+Establish a connection to the a LiveSet running the included max patch by creating a LiveConnection object: 
+
+	>  connection = LiveConnection.new('localhost', 7402, 7403)
+	=> <LiveConnection>
+
+Once connected, you can create a LiveSet object to scan for every Track, Device, DeviceParameter, ClipSlot and Clip 'LiveObject':
 
 	>  require 'live_api'
 	=> true
-	>  LiveSet.new 
-	   Scanned Live set: 2 tracks, 2 devices, 40 clip slots, 11 clips
-	=> #<LiveSet>
+	>  set = LiveSet.new(connection)
+	   Scan Complete
+	=> LiveSet: 7 tracks, 10 devices, 37 parameters, 60 clip slots, 21 clips
 
-It also fetches a default attributes for those objects as specified in config/settings.yaml. It may take a few seconds to load everything. If you're having trouble, try increasing the SLEEP_INTERVAL constant. 
+The initial scan also fetches object attributes as specified in config/settings.yaml. It may take a few seconds to load everything. If you're having trouble, try increasing the SLEEP_INTERVAL constant. 
 
-The 'all' method returns an array of objects of that type:
+Once the set is initialized, you can get all its objects of a particular kind by calling that kind pluralized: 
 
-	>  Track.all
+	>  set.tracks
 	=> [#<Track @order=0, @id=2, @name="1-Audio">, #<Track @order=1, @id=3, @name="2-Audio">]
 
-LiveObject properties are as accessor methods: 
+LiveObject properties act as accessor methods: 
 
-	>  Track.all[0].name
+	>  set.tracks[0].name
 	=> "1-Audio"
 	
 	
