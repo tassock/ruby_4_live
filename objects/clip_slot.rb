@@ -18,7 +18,8 @@ class ClipSlot < LiveObject
   end
   
   def clip
-    live_set.find(clip_slot_id)
+    results = live_set.objects.select{|o| o.kind_of? Clip and  o.clip_slot_id == id}
+    results.any? ? results[0] : nil
   end
   
   def get_clip

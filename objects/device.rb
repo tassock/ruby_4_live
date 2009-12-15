@@ -14,7 +14,7 @@ class Device < LiveObject
   end
   
   def track
-    live_set.find(track_id)
+    live_set.objects.select{ |o| o.kind_of? Track and o.id == track_id}[0]
   end
   
   def parameters

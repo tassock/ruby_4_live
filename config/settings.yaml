@@ -1,6 +1,7 @@
 clip: 
   default_properties: 
     - name 
+    - length
     - pitch_coarse
 clipslot: 
   default_properties: 

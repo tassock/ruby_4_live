@@ -13,6 +13,10 @@ class LiveSet
     puts "Scan Complete"
   end
   
+  def refresh_objects
+    objects.map {|o| o.live_set = self}
+  end
+  
   def inspect
     "LiveSet: #{tracks.length} tracks, #{devices.length} devices, #{device_parameters.length} parameters, #{clip_slots.length} clip slots, #{clips.length} clips"
   end
@@ -45,6 +49,7 @@ class LiveSet
     if objects.select { |o| o.id == obj.id }.empty?
       objects << obj
     else
+      objects.reject! { |o| o.kind_of? Device and o.track_id == obj.id }
       puts "Warning: Attempted to add an object with a duplicate ID #{obj.inspect}"
     end
   end
