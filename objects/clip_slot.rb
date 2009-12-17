@@ -9,6 +9,7 @@ class ClipSlot < LiveObject
   OBJECT_ATTRIBUTES['clipslot']['functions'].each do |method|
     define_method method do
       set_path
+      sleep SLEEP_INTERVAL
       connection.live_call(method)
     end
   end

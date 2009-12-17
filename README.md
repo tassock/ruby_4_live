@@ -33,7 +33,7 @@ Once connected, you can create a LiveSet object to scan for every Track, Device,
 	   Scan Complete
 	=> LiveSet: 7 tracks, 10 devices, 37 parameters, 60 clip slots, 21 clips
 
-The initial scan also fetches object attributes as specified in config/settings.yaml. It may take a few seconds to load everything. If you're having trouble, try increasing the SLEEP_INTERVAL constant. 
+The initial scan also fetches object attributes as specified in config/settings.yaml. It may take a few seconds to load everything. If you're having trouble, try increasing the SLEEP_INTERVAL constant. The LiveSet object stores all children LiveObjects in its 'objects' attribute to allow for easy serialization of the set. 
 
 Once the set is initialized, you can get all its objects of a particular kind by calling that kind pluralized: 
 
