@@ -13,6 +13,12 @@ class LiveSet
     puts "Scan Complete"
   end
   
+  def to_yaml_properties
+    yaml_properties = instance_variables
+    yaml_properties.delete("@connection")
+    yaml_properties.sort
+  end
+  
   def refresh_objects
     objects.map {|o| o.live_set = self}
   end

@@ -11,6 +11,7 @@ class Clip < LiveObject
       set_path
       sleep SLEEP_INTERVAL
       connection.live_call(method)
+      sleep SLEEP_INTERVAL
     end
   end
   
